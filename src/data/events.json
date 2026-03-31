@@ -1,0 +1,98 @@
+{
+  "teaParties": [
+    {
+      "name": "Classic Tea Party",
+      "price": "$35",
+      "priceNote": "per person",
+      "guests": "2–4 guests",
+      "duration": "90 minutes",
+      "featured": true,
+      "includes": [
+        "Choice of tea from our full menu",
+        "Freshly baked scones with clotted cream & jam",
+        "Assorted finger sandwiches",
+        "Petit fours & seasonal sweets"
+      ]
+    },
+    {
+      "name": "Grand Tea Party",
+      "price": "$50",
+      "priceNote": "per person",
+      "guests": "4–8 guests",
+      "duration": "2 hours",
+      "featured": false,
+      "includes": [
+        "Premium tea flight — 3 curated selections",
+        "Full afternoon tea service",
+        "Savoury course & dessert course",
+        "Keepsake tea tin to take home"
+      ]
+    },
+    {
+      "name": "Children's Tea Party",
+      "price": "$20",
+      "priceNote": "per child",
+      "guests": "4–10 children",
+      "duration": "1 hour",
+      "featured": false,
+      "includes": [
+        "Caffeine-free herbal tea or hot cocoa",
+        "Mini sandwiches & fruit",
+        "Cupcakes & cookies",
+        "Tea party crown & activity sheet"
+      ]
+    }
+  ],
+  "upgrades": [
+    { "name": "Champagne Toast", "price": "+$12/person" },
+    { "name": "Fresh Flower Centrepiece", "price": "+$25" },
+    { "name": "Custom Tea Blend Favours", "price": "+$8/person" }
+  ],
+  "events": [
+    {
+      "name": "Spring Tea Tasting",
+      "date": "2026-04-12",
+      "time": "2:00 PM – 4:00 PM",
+      "category": "Tasting",
+      "description": "Sample the season's first-flush Darjeelings and Japanese Shinchas alongside light bites. Learn what makes spring teas so special.",
+      "price": "$25",
+      "spots": 8
+    },
+    {
+      "name": "Watercolour & Tea Workshop",
+      "date": "2026-04-19",
+      "time": "10:00 AM – 12:00 PM",
+      "category": "Workshop",
+      "description": "Paint a botanical watercolour while sipping curated teas. All materials provided. No experience needed — just bring your curiosity.",
+      "price": "$40",
+      "spots": 5
+    },
+    {
+      "name": "Evening Chai Experience",
+      "date": "2026-05-03",
+      "time": "6:00 PM – 8:00 PM",
+      "category": "Tasting",
+      "description": "An immersive evening exploring the world of chai — from classic masala to Kashmiri noon chai. Includes tastings, spice blending, and a take-home blend.",
+      "price": "$30",
+      "spots": 12
+    },
+    {
+      "name": "Mother's Day Grand Tea",
+      "date": "2026-05-10",
+      "time": "11:00 AM – 1:00 PM",
+      "category": "Special Event",
+      "description": "Treat Mum to a special afternoon tea with champagne, a full service, and a gift bag to take home. Reservations required.",
+      "price": "$55",
+      "spots": 3
+    },
+    {
+      "name": "Pu-erh Deep Dive",
+      "date": "2026-05-17",
+      "time": "3:00 PM – 5:00 PM",
+      "category": "Tasting",
+      "description": "Explore the world of aged and fermented teas. Taste sheng vs. shou, learn about aging, and discover why collectors prize these cakes.",
+      "price": "$35",
+      "spots": 10
+    }
+  ]
+}

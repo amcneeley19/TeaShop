@@ -1,0 +1,459 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SHOP_NAME } from '../data/config';
+
+const drinks = [
+	{ name: 'Birthday', desc: 'vanilla black tea, brown sugar, cream with sprinkles', base: 'Black Tea' },
+	{ name: 'Blackberries and Cream', desc: 'blackberry black tea, brown sugar, cream', base: 'Black Tea' },
+	{ name: 'Black Forest', desc: 'chocolate cherry, cream, brown sugar, chocolate syrup', base: 'Specialty' },
+	{ name: 'Black Tiger', desc: 'chocolate caramel, brown sugar, cream, chocolate and caramel sauce', base: 'Specialty' },
+	{ name: 'Bloody Orange', desc: 'hibiscus orange lemonade or creamsicle', base: 'Hibiscus' },
+	{ name: 'Blue Mango', desc: 'butterfly pea, lemongrass, mango', base: 'Herbal' },
+	{ name: 'Brown Sugar Black', desc: 'black tea sweetened with brown sugar, cream', base: 'Black Tea' },
+	{ name: 'Chai', desc: 'choice of fresh brewed chai tea, brown sugar, cream, cinnamon sugar topping', base: 'Chai' },
+	{ name: 'Chocolate Truffle', desc: 'chocolate black tea, cream, brown sugar, chocolate syrup', base: 'Black Tea' },
+	{ name: 'Coconut Grove', desc: 'coconut oolong tea, coconut cream, coconut sugar and coconut', base: 'Oolong Tea' },
+	{ name: 'Dewey Cherry', desc: 'hibiscus tea and cherry', base: 'Hibiscus' },
+	{ name: 'Dragon Fruit Dream', desc: 'real dragon fruit and strawberry', base: 'Fruit' },
+	{ name: 'Key Lime', desc: 'hibiscus tea with real lime, lemonade', base: 'Hibiscus' },
+	{ name: 'Kona Pineapple', desc: 'lemongrass tea, pineapple, and cream', base: 'Herbal' },
+	{ name: 'Lychee Black', desc: 'black tea infused with lychee, brown sugar, cream', base: 'Black Tea' },
+	{ name: 'Lychee Rose Green', desc: 'green tea with rose petals and lychee', base: 'Green Tea' },
+	{ name: 'Matcha', desc: 'whipped green tea, honey, cream, optional fruit powder', base: 'Green Tea' },
+	{ name: 'Melon Berry Green', desc: 'strawberry melon green tea', base: 'Green Tea' },
+	{ name: 'Peaches and Cream', desc: 'peach black tea, brown sugar cream', base: 'Black Tea' },
+	{ name: 'Pina Colada', desc: 'hibiscus tea, pineapple, and coconut lemonade or cream', base: 'Hibiscus' },
+	{ name: 'Purple Papaya Berry', desc: 'butterfly pea, hibiscus tea, acai berry, strawberry lemonade or cream', base: 'Herbal' },
+	{ name: 'Strawberry Black', desc: 'black tea and strawberries, brown sugar and cream', base: 'Black Tea' },
+	{ name: 'Summer Night', desc: 'citrus spearmint tea, sugar and cream', base: 'Herbal' },
+	{ name: 'Taro', desc: 'taro powder and green tea whipped with cream', base: 'Green Tea' },
+	{ name: 'Thai Tea', desc: 'cardamom and coconut black tea, brown sugar, cream', base: 'Black Tea' },
+	{ name: 'Vanilla', desc: 'vanilla black, brown sugar, cream, extra vanilla extract', base: 'Black Tea' },
+	{ name: 'White Chocolate Mint', desc: 'rooibos tea white chocolate, cream, brown sugar and peppermint pieces', base: 'Herbal' },
+	{ name: 'Wild Strawberry', desc: 'hibiscus strawberry lemonade or cream', base: 'Hibiscus' },
+	{ name: 'Valentine', desc: 'chocolate strawberry tea, chocolate syrup, strawberries, cream', base: 'Specialty' },
+];
+
+const baseColors: Record<string, { bg: string; accent: string; text: string }> = {
+	'Black Tea':  { bg: 'rgba(26, 18, 11, 0.07)',   accent: '#6b4226', text: '#3d2e22' },
+	'Specialty':  { bg: 'rgba(140, 80, 60, 0.08)',   accent: '#8c503c', text: '#5a3020' },
+	'Hibiscus':   { bg: 'rgba(196, 80, 100, 0.07)',  accent: '#c45064', text: '#8a3045' },
+	'Herbal':     { bg: 'rgba(120, 140, 100, 0.08)', accent: '#6b8050', text: '#4a5a38' },
+	'Chai':       { bg: 'rgba(180, 120, 60, 0.08)',  accent: '#b47830', text: '#6b4a20' },
+	'Oolong Tea': { bg: 'rgba(184, 98, 63, 0.07)',   accent: '#b8623f', text: '#7a4a2e' },
+	'Fruit':      { bg: 'rgba(200, 100, 120, 0.07)', accent: '#c86478', text: '#8a3050' },
+	'Green Tea':  { bg: 'rgba(61, 90, 62, 0.08)',    accent: '#3d5a3e', text: '#2a3f2b' },
+};
+
+const bases = [...new Set(drinks.map(d => d.base))];
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Infinite Tea Menu — ${SHOP_NAME}`} description="Our handcrafted boba and specialty tea drinks. Made fresh to order with fresh brewed tea, real fruit, and premium ingredients." />
+	</head>
+	<body>
+		<Header />
+
+		<!-- Hero -->
+		<section class="menu-hero">
+			<div class="hero-wash"></div>
+			<div class="hero-inner">
+				<div class="teapot-icon" aria-hidden="true">
+					<svg viewBox="0 0 64 64" width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M20 22c0-4 4-8 12-8s12 4 12 8"></path>
+						<ellipse cx="32" cy="22" rx="14" ry="4"></ellipse>
+						<path d="M18 22v18c0 6 6 10 14 10s14-4 14-10V22"></path>
+						<path d="M46 28h6a6 6 0 0 1 0 12h-6"></path>
+						<path d="M28 14c-1-4 0-6 2-8"></path>
+						<path d="M32 14c-1-4 0-7 3-9"></path>
+						<path d="M36 14c-1-3 0-6 2-8"></path>
+					</svg>
+				</div>
+				<h1 class="menu-title">Infinite Tea Menu</h1>
+				<div class="ornament-line" aria-hidden="true">
+					<span></span>
+					<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"></path></svg>
+					<span></span>
+				</div>
+				<p class="menu-intro">
+					All tea is made fresh to order with choice of fresh brewed tea, lemonade, sweeteners, fresh cooked tapioca boba or bursting boba, real freeze-dried fruit pieces and fruit powders, Ghirardelli syrup, dairy, or nondairy creamer and optional whipped cream topper.
+				</p>
+			</div>
+		</section>
+
+		<main>
+			<!-- Filter bar -->
+			<div class="filter-bar" role="group" aria-label="Filter by tea base">
+				<button class="base-pill active" data-base="all" aria-pressed="true">All Drinks</button>
+				{bases.map((base) => (
+					<button class="base-pill" data-base={base} aria-pressed="false">
+						<span class="pill-dot" style={`background: ${baseColors[base].accent}`}></span>
+						{base}
+					</button>
+				))}
+			</div>
+
+			<div class="drink-count" id="drink-count" aria-live="polite">{drinks.length} drinks</div>
+
+			<!-- Menu grid -->
+			<div class="menu-grid" id="menu-grid">
+				{drinks.map((drink, i) => {
+					const c = baseColors[drink.base];
+					return (
+						<article
+							class="drink-card"
+							data-base={drink.base}
+							style={`--card-bg: ${c.bg}; --card-accent: ${c.accent}; --card-text: ${c.text}; --i: ${i}`}
+						>
+							<div class="card-number" aria-hidden="true">{String(i + 1).padStart(2, '0')}</div>
+							<div class="card-body">
+								<h2 class="drink-name">{drink.name}</h2>
+								<p class="drink-desc">{drink.desc}</p>
+							</div>
+							<span class="base-tag" style={`background: ${c.bg}; color: ${c.text}; border-color: ${c.accent}`}>
+								{drink.base}
+							</span>
+						</article>
+					);
+				})}
+			</div>
+
+			<div class="empty-state" id="empty-state" style="display:none;">
+				<p>No drinks match this filter.</p>
+			</div>
+
+			<!-- Bottom ornament -->
+			<div class="bottom-section">
+				<div class="ornament-line" aria-hidden="true">
+					<span></span>
+					<svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"></path></svg>
+					<span></span>
+				</div>
+				<p class="bottom-note">
+					Ask about our daily specials and seasonal creations.<br />
+					All drinks can be made with dairy or nondairy options.
+				</p>
+				<a href="/tea-list" class="browse-link">Browse Our Loose Leaf Collection &rarr;</a>
+			</div>
+		</main>
+
+		<Footer />
+
+		<script>
+			const grid = document.getElementById('menu-grid')!;
+			const cards = Array.from(grid.querySelectorAll('.drink-card')) as HTMLElement[];
+			const pills = document.querySelectorAll('.base-pill');
+			const countEl = document.getElementById('drink-count')!;
+			const emptyEl = document.getElementById('empty-state')!;
+			let current = 'all';
+
+			function filterDrinks() {
+				let visible = 0;
+				cards.forEach((card, i) => {
+					const base = card.dataset.base || '';
+					if (current === 'all' || base === current) {
+						card.style.display = '';
+						card.style.setProperty('--i', String(i));
+						card.style.animation = 'cardReveal 0.4s var(--ease-out) forwards';
+						card.style.animationDelay = `${visible * 30}ms`;
+						visible++;
+					} else {
+						card.style.display = 'none';
+						card.style.animation = '';
+					}
+				});
+				countEl.textContent = `${visible} drink${visible !== 1 ? 's' : ''}`;
+				emptyEl.style.display = visible === 0 ? '' : 'none';
+			}
+
+			pills.forEach((pill) => {
+				pill.addEventListener('click', () => {
+					pills.forEach((p) => {
+						p.classList.remove('active');
+						p.setAttribute('aria-pressed', 'false');
+					});
+					pill.classList.add('active');
+					pill.setAttribute('aria-pressed', 'true');
+					current = (pill as HTMLElement).dataset.base || 'all';
+					filterDrinks();
+				});
+			});
+
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							(entry.target as HTMLElement).classList.add('visible');
+							observer.unobserve(entry.target);
+						}
+					});
+				},
+				{ threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+			);
+			cards.forEach((card) => observer.observe(card));
+		</script>
+	</body>
+</html>
+
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+	/* ── Hero ── */
+	.menu-hero {
+		position: relative;
+		padding: var(--space-4xl) var(--space-lg) var(--space-2xl);
+		text-align: center;
+		overflow: hidden;
+		background: linear-gradient(170deg, var(--parchment) 0%, var(--parchment-dark) 40%, var(--copper-light) 100%);
+	}
+	.hero-wash {
+		position: absolute;
+		inset: 0;
+		background:
+			radial-gradient(ellipse 80% 60% at 20% 80%, rgba(61, 90, 62, 0.06) 0%, transparent 70%),
+			radial-gradient(ellipse 60% 50% at 80% 20%, rgba(184, 98, 63, 0.06) 0%, transparent 70%);
+		pointer-events: none;
+	}
+	.hero-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+	.teapot-icon {
+		color: var(--copper);
+		margin-bottom: var(--space-md);
+		opacity: 0;
+		animation: floatIn 0.8s var(--ease-out) 0.1s forwards;
+	}
+	.menu-title {
+		font-family: 'Playfair Display', 'Cormorant Garamond', serif;
+		font-size: clamp(2.5rem, 6vw, 4rem);
+		font-weight: 500;
+		letter-spacing: -0.02em;
+		color: var(--espresso);
+		margin-bottom: var(--space-md);
+		opacity: 0;
+		animation: fadeUp 0.7s var(--ease-out) 0.25s forwards;
+	}
+	.ornament-line {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: var(--space-md);
+		margin-bottom: var(--space-lg);
+		color: var(--dusty-rose);
+	}
+	.ornament-line span {
+		display: block;
+		width: 60px;
+		height: 1px;
+		background: linear-gradient(to right, transparent, var(--dusty-rose), transparent);
+	}
+	.menu-intro {
+		font-family: 'Cormorant Garamond', serif;
+		font-size: var(--text-lg);
+		font-style: italic;
+		color: var(--espresso-mid);
+		line-height: 1.7;
+		margin: 0;
+		opacity: 0;
+		animation: fadeUp 0.7s var(--ease-out) 0.45s forwards;
+	}
+
+	/* ── Main ── */
+	main {
+		max-width: 960px;
+		padding: var(--space-2xl) var(--space-lg) var(--space-3xl);
+	}
+
+	/* ── Filter bar ── */
+	.filter-bar {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px;
+		justify-content: center;
+		margin-bottom: var(--space-md);
+	}
+	.base-pill {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		padding: 0.4em 1em;
+		border: 1.5px solid var(--border-strong);
+		border-radius: var(--radius-full);
+		background: #fff;
+		color: var(--text-muted);
+		font-family: 'Outfit', sans-serif;
+		font-size: var(--text-xs);
+		font-weight: 500;
+		cursor: pointer;
+		transition: all var(--duration) var(--ease);
+		white-space: nowrap;
+	}
+	.base-pill:hover {
+		border-color: var(--copper);
+		color: var(--copper-dark);
+		transform: translateY(-1px);
+	}
+	.base-pill.active {
+		background: var(--espresso);
+		border-color: var(--espresso);
+		color: var(--parchment);
+		font-weight: 600;
+	}
+	.base-pill.active .pill-dot { background: var(--parchment) !important; }
+	.pill-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+	.drink-count {
+		text-align: center;
+		font-size: var(--text-xs);
+		color: var(--text-muted);
+		opacity: 0.5;
+		margin-bottom: var(--space-xl);
+		font-weight: 500;
+	}
+
+	/* ── Menu grid ── */
+	.menu-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+		gap: var(--space-md);
+	}
+
+	@keyframes cardReveal {
+		0% { opacity: 0; transform: translateY(12px); }
+		100% { opacity: 1; transform: translateY(0); }
+	}
+
+	.drink-card {
+		position: relative;
+		display: flex;
+		align-items: flex-start;
+		gap: var(--space-md);
+		padding: var(--space-lg) var(--space-lg) var(--space-lg) calc(var(--space-lg) + 4px);
+		background: #fff;
+		border-radius: var(--radius-lg);
+		border: 1px solid var(--border);
+		border-left: 4px solid var(--card-accent, var(--copper));
+		transition: transform var(--duration) var(--ease), box-shadow var(--duration) var(--ease), border-color var(--duration) var(--ease);
+		opacity: 0;
+		transform: translateY(12px);
+	}
+	.drink-card.visible {
+		opacity: 1;
+		transform: translateY(0);
+		transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+		transition-delay: calc(var(--i, 0) * 40ms);
+	}
+	.drink-card:hover {
+		transform: translateY(-3px) scale(1.005);
+		box-shadow: var(--shadow-hover);
+		border-left-width: 4px;
+	}
+	.drink-card::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		background: var(--card-bg, transparent);
+		opacity: 0;
+		transition: opacity var(--duration) var(--ease);
+		pointer-events: none;
+	}
+	.drink-card:hover::before { opacity: 1; }
+	.card-number {
+		font-family: 'Playfair Display', 'Cormorant Garamond', serif;
+		font-size: var(--text-3xl);
+		font-weight: 400;
+		color: var(--card-accent, var(--copper));
+		opacity: 0.18;
+		line-height: 1;
+		flex-shrink: 0;
+		min-width: 36px;
+		padding-top: 2px;
+		transition: opacity var(--duration) var(--ease);
+	}
+	.drink-card:hover .card-number { opacity: 0.35; }
+	.card-body { flex: 1; min-width: 0; position: relative; z-index: 1; }
+	.drink-name {
+		font-family: 'Playfair Display', 'Cormorant Garamond', serif;
+		font-size: var(--text-xl);
+		font-weight: 500;
+		color: var(--espresso);
+		margin: 0 0 var(--space-xs);
+		line-height: 1.25;
+	}
+	.drink-desc {
+		font-size: var(--text-sm);
+		color: var(--text-muted);
+		margin: 0;
+		line-height: 1.55;
+	}
+	.base-tag {
+		position: relative;
+		z-index: 1;
+		font-size: 0.65rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		padding: 0.2em 0.55em;
+		border-radius: var(--radius-full);
+		border: 1px solid;
+		white-space: nowrap;
+		flex-shrink: 0;
+		margin-top: 4px;
+	}
+	.empty-state {
+		text-align: center;
+		padding: var(--space-3xl) var(--space-md);
+		color: var(--text-muted);
+		font-style: italic;
+		font-family: 'Cormorant Garamond', serif;
+		font-size: var(--text-lg);
+	}
+
+	/* ── Bottom ── */
+	.bottom-section { text-align: center; margin-top: var(--space-3xl); }
+	.bottom-note {
+		font-family: 'Cormorant Garamond', serif;
+		font-size: var(--text-lg);
+		color: var(--text-muted);
+		font-style: italic;
+		line-height: 1.7;
+	}
+	.browse-link {
+		display: inline-block;
+		margin-top: var(--space-md);
+		font-family: 'Outfit', sans-serif;
+		font-size: var(--text-sm);
+		font-weight: 600;
+		color: var(--copper);
+		text-decoration: none;
+		padding: 0.6em 1.4em;
+		border: 1.5px solid var(--copper);
+		border-radius: var(--radius-full);
+		transition: all var(--duration) var(--ease);
+	}
+	.browse-link:hover {
+		background: var(--copper);
+		color: #fff;
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
+	}
+
+	@keyframes floatIn {
+		0% { opacity: 0; transform: translateY(-10px) scale(0.95); }
+		100% { opacity: 1; transform: translateY(0) scale(1); }
+	}
+
+	@media (max-width: 768px) {
+		.menu-hero { padding: var(--space-3xl) var(--space-md) var(--space-xl); }
+		.menu-grid { grid-template-columns: 1fr; }
+		.card-number { display: none; }
+		.filter-bar { gap: 4px; }
+		.base-pill { font-size: 0.68rem; padding: 0.35em 0.75em; }
+	}
+
+	@media (max-width: 480px) {
+		.drink-card { padding: var(--space-md) var(--space-md) var(--space-md) calc(var(--space-md) + 4px); }
+		.base-tag { position: absolute; top: var(--space-sm); right: var(--space-sm); }
+	}
+</style>

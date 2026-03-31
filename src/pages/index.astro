@@ -1,0 +1,596 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { SHOP_ADDRESS, SHOP_HOURS_TEXT, BOOKING_URL } from '../data/config';
+import menu from '../data/menu.json';
+
+const featuredTeas = menu.filter((t: any) => t.featured).slice(0, 4);
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+
+		<!-- Hero -->
+		<section class="hero">
+			<div class="hero-bg">
+				<div class="hero-gradient"></div>
+				<div class="hero-pattern"></div>
+			</div>
+			<div class="hero-content">
+				<span class="hero-label label">Waynesville, Ohio</span>
+				<h1>
+					<span class="hero-line">Art Expressions</span>
+					<span class="hero-amp">&amp;</span>
+					<span class="hero-line hero-italic">Infinite Tea</span>
+				</h1>
+				<p class="hero-tagline">Loose leaf tea, a beautiful and comfortable tea room, and all the trinkets your heart could desire</p>
+				<div class="hero-actions">
+					<a href="/tea-list" class="btn-primary">Explore Our Teas</a>
+					<a href="/events" class="btn-ghost">Book a Tea Party</a>
+				</div>
+			</div>
+			<div class="hero-scroll-hint" aria-hidden="true">
+				<span>Scroll</span>
+				<div class="scroll-line"></div>
+			</div>
+		</section>
+
+		<!-- About teaser -->
+		<section class="section">
+			<div class="section-narrow">
+				<div class="ornament" aria-hidden="true">&#10045;</div>
+				<h2 class="text-center">A Tea House & Art Shop</h2>
+				<p class="lead text-center">A tea house &amp; art shop in the heart of Waynesville, Ohio — the Antiques Capital of the Midwest. Step inside to discover hundreds of loose-leaf teas, a cozy tea room, and a curated collection of art, gifts, and handmade treasures.</p>
+				<div class="text-center">
+					<a href="/about" class="text-link">Learn our story <span aria-hidden="true">&rarr;</span></a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Featured Teas -->
+		<section class="section section-tinted">
+			<div class="section-wide">
+				<div class="section-header">
+					<span class="label">From our collection</span>
+					<h2>Featured Teas</h2>
+				</div>
+				<div class="tea-grid">
+					{featuredTeas.map((tea: any, i: number) => (
+						<div class="tea-card" style={`--i: ${i}`}>
+							<div class="tea-card-top">
+								<span class={`caffeine-dot caffeine-${tea.caffeine}`} title={`${tea.caffeine} caffeine`}></span>
+								<span class="tea-category">{tea.category}</span>
+							</div>
+							<h3 class="tea-name">{tea.name}</h3>
+							<p class="tea-desc">{tea.description}</p>
+							<div class="tea-tags">
+								{tea.tags.map((tag: string) => <span class="tag">{tag}</span>)}
+							</div>
+						</div>
+					))}
+				</div>
+				<div class="text-center" style="margin-top: var(--space-2xl);">
+					<a href="/tea-list" class="btn-outline">Browse All 225+ Teas</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Pillars -->
+		<section class="section">
+			<div class="section-wide">
+				<div class="pillars">
+					<div class="pillar">
+						<span class="pillar-number">01</span>
+						<h3>225+ Loose Leaf Teas</h3>
+						<p>From classic greens and bold blacks to herbal tisanes and house blends — there's a cup here for everyone.</p>
+					</div>
+					<div class="pillar">
+						<span class="pillar-number">02</span>
+						<h3>Art & Unique Gifts</h3>
+						<p>Browse local art, handmade goods, books, and treasures you won't find anywhere else.</p>
+					</div>
+					<div class="pillar">
+						<span class="pillar-number">03</span>
+						<h3>Cozy Tea Room</h3>
+						<p>Settle into our comfortable tea room in the heart of historic Waynesville and let us brew something wonderful.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Tea Parties Teaser -->
+		<section class="section section-dark">
+			<div class="section-wide teaser-split">
+				<div class="teaser-text">
+					<span class="label label-light">Gatherings</span>
+					<h2>Host a Tea Party</h2>
+					<p>Gather your favourite people for an unforgettable afternoon. Scones, sandwiches, and the perfect cup — we handle everything.</p>
+					<p class="teaser-detail">Available Wednesday – Sunday, 11 AM – 1 PM</p>
+					<a href="/events" class="btn-outline btn-outline-light">View Packages & Events</a>
+				</div>
+				<div class="teaser-card">
+					<span class="teaser-card-label">Starting from</span>
+					<span class="teaser-card-price">$35</span>
+					<span class="teaser-card-note">per person</span>
+					<div class="teaser-card-divider"></div>
+					<ul>
+						<li>Choice of tea from our full menu</li>
+						<li>Freshly baked scones & sandwiches</li>
+						<li>Petit fours & seasonal sweets</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<!-- Shop Teaser -->
+		<section class="section">
+			<div class="section-wide">
+				<div class="section-header">
+					<span class="label">Take something home</span>
+					<h2>Browse Our Shop</h2>
+				</div>
+				<div class="shop-teaser-grid">
+					<a href="/shop" class="shop-teaser-card">
+						<span class="stc-number">01</span>
+						<h3>Loose Leaf Tea</h3>
+						<p>Take your favourites home. Pouches, tins, and gift boxes.</p>
+					</a>
+					<a href="/shop" class="shop-teaser-card">
+						<span class="stc-number">02</span>
+						<h3>Art & Pottery</h3>
+						<p>Local handmade ceramics, prints, and one-of-a-kind pieces.</p>
+					</a>
+					<a href="/shop" class="shop-teaser-card">
+						<span class="stc-number">03</span>
+						<h3>Gifts & More</h3>
+						<p>Books, soaps, teaware, and curated gift sets.</p>
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- CTA Banner -->
+		<section class="cta-banner">
+			<div class="cta-inner">
+				<span class="label">Come visit us</span>
+				<h2>We'd love to brew<br />something for you.</h2>
+				<p class="cta-address">{SHOP_ADDRESS}</p>
+				<p class="cta-hours">
+					{SHOP_HOURS_TEXT}
+				</p>
+				<a href="/contact" class="btn-primary">Get Directions</a>
+			</div>
+		</section>
+
+		<Footer />
+
+		<script>
+			const reveals = document.querySelectorAll('.reveal');
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) entry.target.classList.add('visible');
+					});
+				},
+				{ threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+			);
+			reveals.forEach((el) => observer.observe(el));
+		</script>
+	</body>
+</html>
+
+<style>
+	/* ── Hero ── */
+	.hero {
+		position: relative;
+		min-height: 90vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		padding: var(--space-4xl) var(--space-lg);
+	}
+	.hero-bg { position: absolute; inset: 0; z-index: 0; }
+	.hero-gradient {
+		position: absolute;
+		inset: 0;
+		background:
+			radial-gradient(ellipse at 30% 20%, var(--forest-mist) 0%, transparent 60%),
+			radial-gradient(ellipse at 70% 80%, var(--copper-light) 0%, transparent 50%),
+			var(--parchment);
+	}
+	.hero-pattern {
+		position: absolute;
+		inset: 0;
+		opacity: 0.03;
+		background-image: radial-gradient(circle at 1px 1px, var(--espresso) 1px, transparent 0);
+		background-size: 32px 32px;
+	}
+	.hero-content {
+		position: relative;
+		z-index: 1;
+		text-align: center;
+		max-width: 800px;
+		animation: fadeUp 0.8s var(--ease-out) both;
+	}
+	.hero-label {
+		display: inline-block;
+		margin-bottom: var(--space-xl);
+		animation: fadeIn 0.6s var(--ease-out) 0.2s both;
+	}
+	.hero h1 {
+		font-size: clamp(2.5rem, 7vw, 5.5rem);
+		font-weight: 400;
+		line-height: 1.05;
+		margin-bottom: var(--space-xl);
+		color: var(--espresso);
+		letter-spacing: -0.02em;
+	}
+	.hero-line { display: block; }
+	.hero-amp {
+		display: block;
+		font-style: italic;
+		font-size: 0.5em;
+		color: var(--copper);
+		line-height: 1.8;
+	}
+	.hero-italic { font-style: italic; font-weight: 300; }
+	.hero-tagline {
+		font-family: 'Cormorant Garamond', serif;
+		font-size: var(--text-xl);
+		color: var(--espresso-mid);
+		font-style: italic;
+		max-width: 520px;
+		margin: 0 auto var(--space-2xl);
+		line-height: 1.6;
+		animation: fadeIn 0.6s var(--ease-out) 0.4s both;
+	}
+	.hero-actions {
+		display: flex;
+		gap: var(--space-md);
+		justify-content: center;
+		flex-wrap: wrap;
+		animation: fadeIn 0.6s var(--ease-out) 0.6s both;
+	}
+	.hero-scroll-hint {
+		position: absolute;
+		bottom: var(--space-xl);
+		left: 50%;
+		transform: translateX(-50%);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--space-sm);
+		color: var(--espresso-mid);
+		font-size: var(--text-xs);
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		opacity: 0.4;
+		animation: fadeIn 1s var(--ease-out) 1s both;
+	}
+	.scroll-line {
+		width: 1px;
+		height: 32px;
+		background: linear-gradient(to bottom, var(--espresso-mid), transparent);
+		animation: scrollPulse 2s var(--ease) infinite;
+	}
+	@keyframes scrollPulse {
+		0%, 100% { opacity: 0.3; transform: scaleY(1); }
+		50% { opacity: 0.8; transform: scaleY(1.3); transform-origin: top; }
+	}
+
+	/* ── Buttons ── */
+	.btn-primary {
+		display: inline-block;
+		padding: 0.8em 2em;
+		background: var(--copper);
+		color: #fff;
+		border: 2px solid var(--copper);
+		border-radius: var(--radius-sm);
+		font-family: 'Outfit', sans-serif;
+		font-size: var(--text-sm);
+		font-weight: 600;
+		text-decoration: none;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		transition: all var(--duration) var(--ease);
+	}
+	.btn-primary:hover {
+		background: var(--copper-dark);
+		border-color: var(--copper-dark);
+		color: #fff;
+		transform: translateY(-1px);
+		box-shadow: var(--shadow-md);
+	}
+	.btn-ghost {
+		display: inline-block;
+		padding: 0.8em 2em;
+		background: transparent;
+		color: var(--espresso);
+		border: 2px solid var(--espresso-mid);
+		border-radius: var(--radius-sm);
+		font-family: 'Outfit', sans-serif;
+		font-size: var(--text-sm);
+		font-weight: 600;
+		text-decoration: none;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		transition: all var(--duration) var(--ease);
+	}
+	.btn-ghost:hover {
+		background: var(--espresso);
+		color: var(--parchment);
+		border-color: var(--espresso);
+		transform: translateY(-1px);
+	}
+	.btn-outline {
+		display: inline-block;
+		padding: 0.7em 1.8em;
+		background: transparent;
+		color: var(--copper);
+		border: 1.5px solid var(--copper);
+		border-radius: var(--radius-sm);
+		font-family: 'Outfit', sans-serif;
+		font-size: var(--text-sm);
+		font-weight: 600;
+		text-decoration: none;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		transition: all var(--duration) var(--ease);
+	}
+	.btn-outline:hover {
+		background: var(--copper);
+		color: #fff;
+		transform: translateY(-1px);
+	}
+	.btn-outline-light { color: var(--parchment); border-color: rgba(250, 246, 240, 0.4); }
+	.btn-outline-light:hover {
+		background: var(--parchment);
+		color: var(--espresso);
+		border-color: var(--parchment);
+	}
+
+	/* ── Sections ── */
+	.section { padding: var(--space-4xl) var(--space-lg); }
+	.section-tinted { background: var(--forest-mist); }
+	.section-dark { background: var(--espresso); color: var(--parchment); }
+	.section-narrow { max-width: 640px; margin: 0 auto; }
+	.section-wide { max-width: 1100px; margin: 0 auto; }
+	.section-header { margin-bottom: var(--space-2xl); }
+	.section-header .label { margin-bottom: var(--space-xs); display: block; }
+	.text-center { text-align: center; }
+	.lead { font-size: var(--text-lg); color: var(--espresso-mid); line-height: 1.8; }
+	.text-link {
+		font-weight: 600;
+		font-size: var(--text-sm);
+		text-decoration: none;
+		color: var(--copper);
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		transition: color var(--duration) var(--ease);
+	}
+	.text-link:hover { color: var(--copper-dark); }
+
+	/* ── Tea grid ── */
+	.tea-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: var(--space-lg);
+	}
+	.tea-card {
+		background: #fff;
+		border-radius: var(--radius-lg);
+		padding: var(--space-xl);
+		border: 1px solid var(--border);
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-sm);
+		transition: transform var(--duration) var(--ease), box-shadow var(--duration) var(--ease), border-color var(--duration) var(--ease);
+	}
+	.tea-card:hover {
+		transform: translateY(-4px);
+		box-shadow: var(--shadow-lg);
+		border-color: var(--copper-light);
+	}
+	.tea-card-top { display: flex; align-items: center; gap: var(--space-sm); }
+	.caffeine-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+	.caffeine-high { background: var(--copper); }
+	.caffeine-medium { background: #d4a574; }
+	.caffeine-low { background: var(--forest); }
+	.caffeine-none { background: #8ba4ad; }
+	.tea-category {
+		font-size: var(--text-xs);
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		font-weight: 600;
+		color: var(--text-muted);
+	}
+	.tea-name { font-size: var(--text-xl); font-weight: 500; margin: 0; }
+	.tea-desc { font-size: var(--text-sm); color: var(--text-muted); margin: 0; line-height: 1.6; flex: 1; }
+	.tea-tags { display: flex; flex-wrap: wrap; gap: var(--space-xs); margin-top: var(--space-sm); }
+	.tag {
+		font-size: var(--text-xs);
+		padding: 0.2em 0.6em;
+		background: var(--parchment-dark);
+		color: var(--text-muted);
+		border-radius: var(--radius-full);
+		font-weight: 500;
+	}
+
+	/* ── Pillars ── */
+	.pillars {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: var(--space-2xl);
+		counter-reset: pillar;
+	}
+	.pillar {
+		position: relative;
+		padding-top: var(--space-xl);
+		border-top: 1px solid var(--border-strong);
+	}
+	.pillar-number {
+		font-family: 'Cormorant Garamond', serif;
+		font-size: var(--text-3xl);
+		font-weight: 300;
+		color: var(--dusty-rose);
+		line-height: 1;
+		margin-bottom: var(--space-sm);
+		display: block;
+	}
+	.pillar h3 { font-size: var(--text-xl); font-weight: 500; margin-bottom: var(--space-sm); }
+	.pillar p { font-size: var(--text-sm); color: var(--text-muted); margin: 0; line-height: 1.7; }
+
+	/* ── Tea party teaser ── */
+	.teaser-split {
+		display: grid;
+		grid-template-columns: 1.3fr 1fr;
+		gap: var(--space-3xl);
+		align-items: center;
+	}
+	.teaser-text h2 { color: var(--parchment); margin-bottom: var(--space-md); }
+	.teaser-text p { color: rgba(250, 246, 240, 0.7); line-height: 1.8; }
+	.teaser-detail { font-size: var(--text-sm); font-weight: 600; color: var(--dusty-rose) !important; margin-bottom: var(--space-xl); }
+	.label-light { color: rgba(250, 246, 240, 0.4); }
+	.teaser-card {
+		background: rgba(250, 246, 240, 0.06);
+		border: 1px solid rgba(250, 246, 240, 0.12);
+		border-radius: var(--radius-lg);
+		padding: var(--space-2xl);
+		text-align: center;
+	}
+	.teaser-card-label {
+		display: block;
+		font-size: var(--text-xs);
+		text-transform: uppercase;
+		letter-spacing: 0.14em;
+		color: rgba(250, 246, 240, 0.4);
+		margin-bottom: var(--space-xs);
+	}
+	.teaser-card-price {
+		display: block;
+		font-family: 'Cormorant Garamond', serif;
+		font-size: var(--text-5xl);
+		font-weight: 400;
+		color: var(--copper);
+		line-height: 1.1;
+	}
+	.teaser-card-note {
+		display: block;
+		font-size: var(--text-sm);
+		color: rgba(250, 246, 240, 0.5);
+		margin-bottom: var(--space-md);
+	}
+	.teaser-card-divider {
+		width: 40px;
+		height: 1px;
+		background: rgba(250, 246, 240, 0.15);
+		margin: 0 auto var(--space-md);
+	}
+	.teaser-card ul { list-style: none; padding: 0; margin: 0; text-align: left; }
+	.teaser-card li {
+		font-size: var(--text-sm);
+		color: rgba(250, 246, 240, 0.6);
+		padding: var(--space-xs) 0;
+		border-bottom: 1px solid rgba(250, 246, 240, 0.06);
+		line-height: 1.5;
+	}
+	.teaser-card li:last-child { border-bottom: none; }
+
+	/* ── Shop teaser ── */
+	.shop-teaser-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: var(--space-lg);
+	}
+	.shop-teaser-card {
+		position: relative;
+		padding: var(--space-xl);
+		border: 1px solid var(--border-strong);
+		border-radius: var(--radius-lg);
+		text-decoration: none;
+		color: inherit;
+		transition: all var(--duration) var(--ease);
+		overflow: hidden;
+	}
+	.shop-teaser-card::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: var(--copper);
+		opacity: 0;
+		transition: opacity var(--duration) var(--ease);
+		border-radius: inherit;
+		z-index: 0;
+	}
+	.shop-teaser-card:hover {
+		border-color: var(--copper);
+		color: #fff;
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
+	}
+	.shop-teaser-card:hover::after { opacity: 1; }
+	.shop-teaser-card > * { position: relative; z-index: 1; }
+	.stc-number {
+		font-family: 'Cormorant Garamond', serif;
+		font-size: var(--text-2xl);
+		font-weight: 300;
+		color: var(--dusty-rose);
+		display: block;
+		margin-bottom: var(--space-sm);
+		transition: color var(--duration) var(--ease);
+	}
+	.shop-teaser-card:hover .stc-number { color: rgba(255, 255, 255, 0.5); }
+	.shop-teaser-card h3 {
+		font-size: var(--text-xl);
+		margin-bottom: var(--space-xs);
+		transition: color var(--duration) var(--ease);
+	}
+	.shop-teaser-card:hover h3 { color: #fff; }
+	.shop-teaser-card p {
+		font-size: var(--text-sm);
+		color: var(--text-muted);
+		margin: 0;
+		line-height: 1.6;
+		transition: color var(--duration) var(--ease);
+	}
+	.shop-teaser-card:hover p { color: rgba(255, 255, 255, 0.8); }
+
+	/* ── CTA Banner ── */
+	.cta-banner {
+		background: var(--copper);
+		color: #fff;
+		padding: var(--space-4xl) var(--space-lg);
+		text-align: center;
+	}
+	.cta-inner { max-width: 600px; margin: 0 auto; }
+	.cta-banner .label { color: rgba(255, 255, 255, 0.5); }
+	.cta-banner h2 { color: #fff; font-weight: 400; font-style: italic; margin-bottom: var(--space-lg); }
+	.cta-address { color: rgba(255, 255, 255, 0.85); font-size: var(--text-lg); margin-bottom: 0.2em; }
+	.cta-hours { color: rgba(255, 255, 255, 0.55); font-size: var(--text-sm); margin-bottom: var(--space-xl); }
+	.cta-banner .btn-primary {
+		background: #fff;
+		color: var(--copper);
+		border-color: #fff;
+	}
+	.cta-banner .btn-primary:hover {
+		background: var(--parchment);
+		border-color: var(--parchment);
+		color: var(--copper-dark);
+	}
+
+	/* ── Responsive ── */
+	@media (max-width: 768px) {
+		.hero { min-height: 80vh; padding: var(--space-3xl) var(--space-md); }
+		.hero-scroll-hint { display: none; }
+		.pillars,
+		.teaser-split { grid-template-columns: 1fr; gap: var(--space-xl); }
+		.shop-teaser-grid { grid-template-columns: 1fr; }
+	}
+</style>

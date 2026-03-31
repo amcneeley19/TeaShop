@@ -1,0 +1,130 @@
+[
+  {
+    "name": "Sencha Supreme",
+    "category": "Green Tea",
+    "description": "Smooth, grassy Japanese green tea with a clean, sweet finish.",
+    "caffeine": "medium",
+    "featured": true,
+    "tags": ["grassy", "smooth", "classic"]
+  },
+  {
+    "name": "Jasmine Pearl",
+    "category": "Green Tea",
+    "description": "Hand-rolled green tea leaves scented with fresh jasmine blossoms.",
+    "caffeine": "medium",
+    "featured": true,
+    "tags": ["floral", "aromatic", "hand-rolled"]
+  },
+  {
+    "name": "Matcha Ceremonial Grade",
+    "category": "Green Tea",
+    "description": "Stone-ground Japanese green tea powder. Vibrant, creamy, and rich in umami.",
+    "caffeine": "high",
+    "featured": true,
+    "tags": ["umami", "vibrant", "ceremonial"]
+  },
+  {
+    "name": "Darjeeling First Flush",
+    "category": "Black Tea",
+    "description": "Light-bodied with muscatel character and floral notes. The Champagne of teas.",
+    "caffeine": "high",
+    "featured": true,
+    "tags": ["floral", "muscatel", "elegant"]
+  },
+  {
+    "name": "Earl Grey Classic",
+    "category": "Black Tea",
+    "description": "Bergamot-scented black tea. A timeless classic for every afternoon.",
+    "caffeine": "high",
+    "featured": false,
+    "tags": ["bergamot", "classic", "citrusy"]
+  },
+  {
+    "name": "English Breakfast",
+    "category": "Black Tea",
+    "description": "Full-bodied, robust blend. Perfect with milk and sugar.",
+    "caffeine": "high",
+    "featured": false,
+    "tags": ["robust", "malty", "morning"]
+  },
+  {
+    "name": "Spiced Chai Masala",
+    "category": "Black Tea",
+    "description": "Our house chai blend with cardamom, cinnamon, ginger, and clove.",
+    "caffeine": "high",
+    "featured": false,
+    "tags": ["spicy", "warming", "aromatic"]
+  },
+  {
+    "name": "Lavender Lullaby",
+    "category": "Herbal",
+    "description": "Caffeine-free lavender, chamomile, and lemon balm blend for restful evenings.",
+    "caffeine": "none",
+    "featured": false,
+    "tags": ["calming", "floral", "bedtime"]
+  },
+  {
+    "name": "Peppermint Refresh",
+    "category": "Herbal",
+    "description": "Pure peppermint leaves. Bright, cooling, and naturally caffeine-free.",
+    "caffeine": "none",
+    "featured": false,
+    "tags": ["minty", "cooling", "digestive"]
+  },
+  {
+    "name": "Silver Needle",
+    "category": "White Tea",
+    "description": "Pure Fujian white tea buds. Delicate, sweet, and subtly honeyed.",
+    "caffeine": "low",
+    "featured": false,
+    "tags": ["delicate", "sweet", "pure"]
+  },
+  {
+    "name": "Iron Goddess Oolong",
+    "category": "Oolong",
+    "description": "Traditional Tie Guan Yin with orchid-like aroma and creamy finish.",
+    "caffeine": "medium",
+    "featured": false,
+    "tags": ["orchid", "creamy", "traditional"]
+  },
+  {
+    "name": "Rooibos Vanilla",
+    "category": "Herbal",
+    "description": "South African rooibos with natural vanilla. Caffeine-free and naturally sweet.",
+    "caffeine": "none",
+    "featured": false,
+    "tags": ["vanilla", "sweet", "caffeine-free"]
+  },
+  {
+    "name": "Dragon Well (Longjing)",
+    "category": "Green Tea",
+    "description": "Pan-fired Chinese green tea with chestnut notes and a flat, elegant leaf.",
+    "caffeine": "medium",
+    "featured": false,
+    "tags": ["nutty", "elegant", "pan-fired"]
+  },
+  {
+    "name": "Genmaicha",
+    "category": "Green Tea",
+    "description": "Japanese green tea blended with toasted brown rice. Warm and nutty.",
+    "caffeine": "medium",
+    "featured": false,
+    "tags": ["toasty", "nutty", "comforting"]
+  },
+  {
+    "name": "Lapsang Souchong",
+    "category": "Black Tea",
+    "description": "Pine-smoked black tea from Fujian. Bold, smoky, and unforgettable.",
+    "caffeine": "high",
+    "featured": false,
+    "tags": ["smoky", "bold", "pine"]
+  },
+  {
+    "name": "Hibiscus Berry",
+    "category": "Herbal",
+    "description": "Tart hibiscus with elderberry, rosehips, and blackcurrant. Ruby-red and refreshing.",
+    "caffeine": "none",
+    "featured": false,
+    "tags": ["tart", "fruity", "vibrant"]
+  }
+]

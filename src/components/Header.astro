@@ -1,0 +1,201 @@
+---
+import { SHOP_NAME_SHORT } from '../data/config';
+import HeaderLink from './HeaderLink.astro';
+import CartButton from './CartButton.astro';
+---
+
+<header>
+	<div class="header-inner">
+		<a href="/" class="logo">
+			<span class="logo-mark">AE</span>
+			<span class="logo-text">{SHOP_NAME_SHORT}</span>
+		</a>
+		<button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+			<span class="bar"></span>
+			<span class="bar"></span>
+		</button>
+		<nav class="nav-links" role="navigation" aria-label="Main navigation">
+			<HeaderLink href="/">Home</HeaderLink>
+			<HeaderLink href="/tea-list">Tea List</HeaderLink>
+			<HeaderLink href="/infinite-menu">Infinite Menu</HeaderLink>
+			<HeaderLink href="/shop">Shop</HeaderLink>
+			<HeaderLink href="/events">Events</HeaderLink>
+			<HeaderLink href="/about">About</HeaderLink>
+			<HeaderLink href="/contact">Contact</HeaderLink>
+		</nav>
+		<div class="header-actions">
+			<CartButton />
+		</div>
+	</div>
+</header>
+
+<script>
+	const toggle = document.querySelector('.menu-toggle') as HTMLButtonElement;
+	const links = document.querySelector('.nav-links') as HTMLElement;
+	toggle?.addEventListener('click', () => {
+		const open = toggle.getAttribute('aria-expanded') === 'true';
+		toggle.setAttribute('aria-expanded', String(!open));
+		links.classList.toggle('open', !open);
+		toggle.classList.toggle('open', !open);
+	});
+</script>
+
+<style>
+	header {
+		position: sticky;
+		top: 0;
+		z-index: 100;
+		background: rgba(250, 246, 240, 0.92);
+		backdrop-filter: blur(16px) saturate(1.2);
+		-webkit-backdrop-filter: blur(16px) saturate(1.2);
+		border-bottom: 1px solid rgba(26, 18, 11, 0.06);
+	}
+
+	.header-inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 var(--space-lg);
+		height: 72px;
+		gap: var(--space-md);
+	}
+
+	.logo {
+		display: flex;
+		align-items: center;
+		gap: var(--space-sm);
+		text-decoration: none;
+		flex-shrink: 0;
+	}
+
+	.logo-mark {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 36px;
+		height: 36px;
+		background: var(--espresso);
+		color: var(--parchment);
+		font-family: 'Cormorant Garamond', serif;
+		font-size: var(--text-sm);
+		font-weight: 600;
+		letter-spacing: 0.08em;
+		border-radius: var(--radius-sm);
+		transition: background var(--duration) var(--ease);
+	}
+
+	.logo:hover .logo-mark {
+		background: var(--copper);
+	}
+
+	.logo-text {
+		font-family: 'Cormorant Garamond', serif;
+		font-size: var(--text-xl);
+		font-weight: 600;
+		color: var(--espresso);
+		letter-spacing: -0.01em;
+		transition: color var(--duration) var(--ease);
+	}
+
+	.logo:hover .logo-text {
+		color: var(--copper);
+	}
+
+	.nav-links {
+		display: flex;
+		align-items: center;
+		gap: 2px;
+	}
+
+	.nav-links :global(a) {
+		padding: 0.4em 0.7em;
+		color: var(--espresso-mid);
+		text-decoration: none;
+		font-size: var(--text-sm);
+		font-weight: 500;
+		letter-spacing: 0.03em;
+		border-radius: var(--radius-sm);
+		transition: color var(--duration) var(--ease), background var(--duration) var(--ease);
+		white-space: nowrap;
+	}
+
+	.nav-links :global(a:hover) {
+		color: var(--copper);
+		background: var(--copper-light);
+	}
+
+	.nav-links :global(a.active) {
+		color: var(--copper);
+		font-weight: 600;
+	}
+
+	.header-actions {
+		display: flex;
+		align-items: center;
+		flex-shrink: 0;
+	}
+
+	.menu-toggle {
+		display: none;
+		flex-direction: column;
+		gap: 6px;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 8px 4px;
+		border-radius: var(--radius-sm);
+		transition: background var(--duration) var(--ease);
+	}
+
+	.menu-toggle:hover { background: var(--parchment-dark); }
+
+	.menu-toggle .bar {
+		display: block;
+		width: 20px;
+		height: 1.5px;
+		background: var(--espresso);
+		border-radius: 2px;
+		transition: transform var(--duration) var(--ease), opacity var(--duration) var(--ease);
+		transform-origin: center;
+	}
+
+	.menu-toggle.open .bar:first-child {
+		transform: translateY(3.75px) rotate(45deg);
+	}
+
+	.menu-toggle.open .bar:last-child {
+		transform: translateY(-3.75px) rotate(-45deg);
+	}
+
+	@media (max-width: 768px) {
+		.menu-toggle { display: flex; }
+
+		.nav-links {
+			display: none;
+			position: absolute;
+			top: 72px;
+			left: 0;
+			right: 0;
+			background: rgba(250, 246, 240, 0.98);
+			backdrop-filter: blur(16px);
+			flex-direction: column;
+			align-items: stretch;
+			padding: var(--space-sm) var(--space-lg) var(--space-lg);
+			box-shadow: var(--shadow-lg);
+			gap: 0;
+			animation: fadeIn 0.2s var(--ease);
+		}
+
+		.nav-links.open { display: flex; }
+
+		.nav-links :global(a) {
+			padding: 0.75em var(--space-sm);
+			font-size: var(--text-base);
+			border-bottom: 1px solid var(--border);
+		}
+
+		.nav-links :global(a:last-child) { border-bottom: none; }
+	}
+</style>

@@ -1,0 +1,163 @@
+[
+  {
+    "name": "Jasmine Pearl Loose Leaf",
+    "description": "Hand-rolled jasmine green tea. 2oz pouch — makes approximately 25 cups.",
+    "price": "$14.00",
+    "category": "Tea",
+    "squareItemId": ""
+  },
+  {
+    "name": "Spiced Chai Masala Blend",
+    "description": "Our house chai blend with cardamom, cinnamon, ginger, and clove. 3oz pouch.",
+    "price": "$12.00",
+    "category": "Tea",
+    "squareItemId": ""
+  },
+  {
+    "name": "Lavender Lullaby Herbal",
+    "description": "Caffeine-free lavender, chamomile, and lemon balm blend. 2oz pouch.",
+    "price": "$11.00",
+    "category": "Tea",
+    "squareItemId": ""
+  },
+  {
+    "name": "Matcha Ceremonial Grade",
+    "description": "Premium stone-ground Japanese matcha. 30g tin.",
+    "price": "$28.00",
+    "category": "Tea",
+    "squareItemId": ""
+  },
+  {
+    "name": "Earl Grey Classic Loose Leaf",
+    "description": "Bergamot-scented black tea. 3oz pouch — makes approximately 35 cups.",
+    "price": "$10.00",
+    "category": "Tea",
+    "squareItemId": ""
+  },
+  {
+    "name": "Darjeeling First Flush",
+    "description": "The Champagne of teas. 2oz pouch from a single Darjeeling estate.",
+    "price": "$16.00",
+    "category": "Tea",
+    "squareItemId": ""
+  },
+  {
+    "name": "Silver Needle White Tea",
+    "description": "Pure Fujian white tea buds. 1.5oz pouch — delicate and sweet.",
+    "price": "$18.00",
+    "category": "Tea",
+    "squareItemId": ""
+  },
+  {
+    "name": "Sampler Gift Box",
+    "description": "Six of our most popular teas in a beautiful gift box. Perfect for gifting.",
+    "price": "$36.00",
+    "category": "Tea",
+    "squareItemId": ""
+  },
+  {
+    "name": "Handmade Ceramic Tea Mug",
+    "description": "Wheel-thrown stoneware mug by a local Waynesville potter. 12oz. Each one unique.",
+    "price": "$32.00",
+    "category": "Art",
+    "squareItemId": ""
+  },
+  {
+    "name": "Botanical Tea Print",
+    "description": "Watercolour art print of tea botanicals. 8x10 inches, unframed.",
+    "price": "$20.00",
+    "category": "Art",
+    "squareItemId": ""
+  },
+  {
+    "name": "Hand-Painted Tea Tray",
+    "description": "Decorative wooden tea tray with floral design by a local artist.",
+    "price": "$45.00",
+    "category": "Art",
+    "squareItemId": ""
+  },
+  {
+    "name": "Ceramic Tea Light Holder",
+    "description": "Handcrafted tea light holder with a cutout leaf pattern. Warm glow.",
+    "price": "$18.00",
+    "category": "Art",
+    "squareItemId": ""
+  },
+  {
+    "name": "The Tea Book",
+    "description": "A comprehensive guide to the world of tea — history, brewing, and culture.",
+    "price": "$22.00",
+    "category": "Books",
+    "squareItemId": ""
+  },
+  {
+    "name": "Wabi Sabi: The Japanese Art of Impermanence",
+    "description": "A beautiful exploration of wabi sabi philosophy and aesthetics.",
+    "price": "$18.00",
+    "category": "Books",
+    "squareItemId": ""
+  },
+  {
+    "name": "A Little Book of Japanese Contentments",
+    "description": "Pocket-sized guide to finding joy in small moments. Perfect gift.",
+    "price": "$12.00",
+    "category": "Books",
+    "squareItemId": ""
+  },
+  {
+    "name": "Lavender & Chamomile Bar Soap",
+    "description": "Handmade cold-process soap with dried lavender buds. 4.5oz bar.",
+    "price": "$8.00",
+    "category": "Soap & Body",
+    "squareItemId": ""
+  },
+  {
+    "name": "Green Tea & Honey Lip Balm",
+    "description": "Beeswax lip balm infused with green tea extract and local honey.",
+    "price": "$5.00",
+    "category": "Soap & Body",
+    "squareItemId": ""
+  },
+  {
+    "name": "Earl Grey Bath Salts",
+    "description": "Bergamot-scented bath salts with dried cornflower petals. 8oz jar.",
+    "price": "$14.00",
+    "category": "Soap & Body",
+    "squareItemId": ""
+  },
+  {
+    "name": "Cast Iron Teapot (Black)",
+    "description": "Traditional Japanese-style cast iron teapot with strainer. 24oz.",
+    "price": "$42.00",
+    "category": "Gifts",
+    "squareItemId": ""
+  },
+  {
+    "name": "Glass Teapot with Infuser",
+    "description": "Borosilicate glass teapot with removable stainless steel infuser. 20oz.",
+    "price": "$28.00",
+    "category": "Gifts",
+    "squareItemId": ""
+  },
+  {
+    "name": "Bamboo Tea Scoop Set",
+    "description": "Handcrafted bamboo tea scoop and tongs. Beautiful and functional.",
+    "price": "$15.00",
+    "category": "Gifts",
+    "squareItemId": ""
+  },
+  {
+    "name": "Linen Tea Towel (Botanical)",
+    "description": "Screen-printed linen tea towel with botanical tea illustrations.",
+    "price": "$16.00",
+    "category": "Gifts",
+    "squareItemId": ""
+  },
+  {
+    "name": "Beeswax Tea Candle Set",
+    "description": "Set of 3 hand-dipped beeswax candles. Subtle honey scent.",
+    "price": "$18.00",
+    "category": "Gifts",
+    "squareItemId": ""
+  }
+]

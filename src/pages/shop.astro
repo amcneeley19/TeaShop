@@ -1,0 +1,88 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import ShopGrid from '../components/ShopGrid.astro';
+import { SHOP_NAME } from '../data/config';
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Shop — ${SHOP_NAME}`} description="Browse our curated collection of loose leaf teas, art, books, handmade soap, and unique gifts." />
+	</head>
+	<body>
+		<Header />
+		<section class="page-hero">
+			<span class="label">Take Something Home</span>
+			<h1>Shop</h1>
+			<p class="subtitle">Teas, art, and treasures — shipped to your door</p>
+		</section>
+		<main>
+			<ShopGrid />
+			<div class="shop-note">
+				<p>Product images and inventory coming soon. In the meantime, visit our Square shop or stop in to browse everything in person.</p>
+				<a href="https://art-expressions-243highst.square.site" target="_blank" rel="noopener noreferrer" class="btn-outline">Visit Square Shop</a>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.page-hero {
+		background: var(--forest-mist);
+		padding: var(--space-3xl) var(--space-lg) var(--space-xl);
+		text-align: center;
+	}
+	.page-hero .label { margin-bottom: var(--space-xs); display: block; }
+	.page-hero h1 { margin-bottom: var(--space-xs); }
+	.subtitle {
+		font-family: 'Cormorant Garamond', serif;
+		color: var(--text-muted);
+		font-style: italic;
+		font-size: var(--text-lg);
+		margin: 0;
+	}
+	main {
+		max-width: 1200px;
+		padding: var(--space-2xl) var(--space-lg) var(--space-3xl);
+	}
+	.shop-note {
+		background: var(--forest-mist);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		padding: var(--space-2xl);
+		text-align: center;
+		margin-top: var(--space-2xl);
+	}
+	.shop-note p {
+		color: var(--text-muted);
+		font-style: italic;
+		font-family: 'Cormorant Garamond', serif;
+		font-size: var(--text-lg);
+		margin-bottom: var(--space-lg);
+		max-width: 550px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.btn-outline {
+		display: inline-block;
+		padding: 0.7em 1.8em;
+		background: transparent;
+		color: var(--copper);
+		border: 1.5px solid var(--copper);
+		border-radius: var(--radius-sm);
+		font-family: 'Outfit', sans-serif;
+		font-size: var(--text-sm);
+		font-weight: 600;
+		text-decoration: none;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		transition: all var(--duration) var(--ease);
+	}
+	.btn-outline:hover {
+		background: var(--copper);
+		color: #fff;
+		transform: translateY(-1px);
+	}
+</style>

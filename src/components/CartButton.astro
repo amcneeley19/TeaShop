@@ -1,0 +1,54 @@
+---
+// Cart button — wire up with Square Web Payments SDK when ready
+---
+
+<button class="cart-btn" id="cart-btn" aria-label="Shopping cart" title="Cart">
+	<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+		<path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+		<line x1="3" y1="6" x2="21" y2="6" />
+		<path d="M16 10a4 4 0 01-8 0" />
+	</svg>
+	<span class="cart-badge" id="cart-badge">0</span>
+</button>
+
+<style>
+	.cart-btn {
+		position: relative;
+		background: none;
+		border: none;
+		cursor: pointer;
+		color: var(--espresso-mid);
+		padding: 6px;
+		border-radius: var(--radius-sm);
+		transition: color var(--duration) var(--ease), background var(--duration) var(--ease);
+	}
+
+	.cart-btn:hover {
+		color: var(--copper);
+		background: var(--copper-light);
+	}
+
+	.cart-badge {
+		position: absolute;
+		top: -2px;
+		right: -4px;
+		background: var(--copper);
+		color: white;
+		font-size: 10px;
+		font-weight: 700;
+		min-width: 16px;
+		height: 16px;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 0;
+		transform: scale(0.6);
+		transition: opacity var(--duration) var(--ease), transform var(--duration) var(--ease-bounce);
+	}
+
+	.cart-badge.has-items {
+		opacity: 1;
+		transform: scale(1);
+	}
+</style>
