@@ -24,6 +24,8 @@ const events = eventsData.events.map((e: any) => {
 	const spotsText = spotsWarn ? `Only ${e.spots} spots left` : `${e.spots} spots available`;
 	return { ...e, title: e.name, month: monthStr, day: dayNum, dateText, spotsWarn, spots: spotsText };
 });
+
+export const prerender = true;
 ---
 <!doctype html>
 <html lang="en">

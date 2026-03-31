@@ -7,6 +7,8 @@ import { SHOP_ADDRESS, SHOP_HOURS_TEXT, BOOKING_URL } from '../data/config';
 import menu from '../data/menu.json';
 
 const featuredTeas = menu.filter((t: any) => t.featured).slice(0, 4);
+
+export const prerender = true;
 ---
 <!doctype html>
 <html lang="en">

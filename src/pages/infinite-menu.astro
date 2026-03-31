@@ -17,6 +17,8 @@ const baseColors: Record<string, { bg: string; accent: string; text: string }> =
 };
 
 const bases = [...new Set(drinks.map(d => d.base))];
+
+export const prerender = true;
 ---
 <!doctype html>
 <html lang="en">
