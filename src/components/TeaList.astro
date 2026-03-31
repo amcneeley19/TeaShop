@@ -30,10 +30,11 @@ const caffeineFilters = ['All', 'high', 'medium', 'low', 'none'];
 
 	<div class="tea-grid" id="tea-grid">
 		{menu.map((tea: any) => (
-			<div class="tea-card" data-name={tea.name.toLowerCase()} data-desc={tea.description.toLowerCase()} data-category={tea.category} data-caffeine={tea.caffeine} data-tags={tea.tags.join(' ')}>
+			<div class="tea-card" data-name={tea.name.toLowerCase()} data-desc={tea.description.toLowerCase()} data-category={tea.category} data-caffeine={tea.caffeine} data-tags={tea.tags.join(' ')} data-price-per-oz={tea.pricePerOz}>
 				<div class="card-top">
 					<span class={`caff-dot caff-${tea.caffeine}`} title={`${tea.caffeine} caffeine`}></span>
 					{tea.featured && <span class="featured-badge">Featured</span>}
+					<span class="price-per-oz">${tea.pricePerOz.toFixed(2)}/oz</span>
 				</div>
 				<h3>{tea.name}</h3>
 				<p class="card-cat">{tea.category}</p>
@@ -41,6 +42,16 @@ const caffeineFilters = ['All', 'high', 'medium', 'low', 'none'];
 				<div class="card-tags">
 					{tea.tags.map((tag: string) => <span class="tag">{tag}</span>)}
 				</div>
+				<div class="card-actions">
+					<div class="stepper" aria-label="Select ounces">
+						<button class="stepper-btn stepper-dec" aria-label="Decrease ounces">−</button>
+						<span class="stepper-val">1</span>
+						<button class="stepper-btn stepper-inc" aria-label="Increase ounces">+</button>
+						<span class="stepper-unit">oz</span>
+					</div>
+					<span class="line-total">${tea.pricePerOz.toFixed(2)}</span>
+				</div>
+				<button class="add-to-cart-btn" data-name={tea.name} data-category={tea.category} data-price-per-oz={tea.pricePerOz} aria-label={`Add ${tea.name} to cart`}>Add to Cart</button>
 			</div>
 		))}
 	</div>
@@ -51,6 +62,9 @@ const caffeineFilters = ['All', 'high', 'medium', 'low', 'none'];
 </div>
 
 <script>
+	import { cart } from '../lib/cart-browser';
+	import { slugify } from '../lib/utils';
+
 	const searchInput = document.getElementById('tea-search') as HTMLInputElement;
 	const grid = document.getElementById('tea-grid')!;
 	const cards = Array.from(grid.querySelectorAll('.tea-card')) as HTMLElement[];
@@ -106,6 +120,56 @@ const caffeineFilters = ['All', 'high', 'medium', 'low', 'none'];
 			pill.setAttribute('aria-pressed', 'true');
 			currentCaffeine = (pill as HTMLElement).dataset.caffeine || 'All';
 			filterTeas();
+		});
+	});
+
+	// Stepper and add-to-cart logic
+	cards.forEach((card) => {
+		const decBtn = card.querySelector('.stepper-dec') as HTMLButtonElement;
+		const incBtn = card.querySelector('.stepper-inc') as HTMLButtonElement;
+		const valEl = card.querySelector('.stepper-val') as HTMLElement;
+		const totalEl = card.querySelector('.line-total') as HTMLElement;
+		const addBtn = card.querySelector('.add-to-cart-btn') as HTMLButtonElement;
+		const pricePerOz = parseFloat(card.dataset.pricePerOz || '0');
+
+		let ounces = 1;
+
+		function updateDisplay() {
+			valEl.textContent = String(ounces);
+			totalEl.textContent = `$${(ounces * pricePerOz).toFixed(2)}`;
+			decBtn.disabled = ounces <= 1;
+			incBtn.disabled = ounces >= 16;
+		}
+
+		updateDisplay();
+
+		decBtn.addEventListener('click', () => {
+			if (ounces > 1) { ounces--; updateDisplay(); }
+		});
+
+		incBtn.addEventListener('click', () => {
+			if (ounces < 16) { ounces++; updateDisplay(); }
+		});
+
+		addBtn.addEventListener('click', () => {
+			const name = addBtn.dataset.name || '';
+			const category = addBtn.dataset.category || '';
+			cart.addItem({
+				type: 'tea',
+				id: slugify(name),
+				name,
+				category,
+				ounces,
+				pricePerOz,
+			});
+
+			const original = addBtn.textContent;
+			addBtn.textContent = 'Added!';
+			addBtn.classList.add('added');
+			setTimeout(() => {
+				addBtn.textContent = original;
+				addBtn.classList.remove('added');
+			}, 1200);
 		});
 	});
 </script>
@@ -204,6 +268,12 @@ const caffeineFilters = ['All', 'high', 'medium', 'low', 'none'];
 		background: var(--copper-light);
 		color: var(--copper-dark);
 	}
+	.price-per-oz {
+		margin-left: auto;
+		font-size: var(--text-xs);
+		font-weight: 600;
+		color: var(--forest);
+	}
 	.tea-card h3 { font-size: var(--text-lg); font-weight: 500; margin: 0; }
 	.card-cat {
 		font-size: var(--text-xs);
@@ -223,6 +293,84 @@ const caffeineFilters = ['All', 'high', 'medium', 'low', 'none'];
 		border-radius: var(--radius-full);
 		font-weight: 500;
 	}
+
+	/* Card actions row: stepper + line total */
+	.card-actions {
+		display: flex;
+		align-items: center;
+		gap: var(--space-sm);
+		margin-top: var(--space-sm);
+	}
+	.stepper {
+		display: flex;
+		align-items: center;
+		gap: 0;
+		border: 1.5px solid var(--border-strong);
+		border-radius: var(--radius-full);
+		overflow: hidden;
+		background: #fff;
+	}
+	.stepper-btn {
+		width: 28px;
+		height: 28px;
+		border: none;
+		background: transparent;
+		color: var(--text-muted);
+		font-size: 1rem;
+		line-height: 1;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: background var(--duration) var(--ease), color var(--duration) var(--ease);
+		flex-shrink: 0;
+	}
+	.stepper-btn:hover:not(:disabled) { background: var(--parchment-dark); color: var(--forest); }
+	.stepper-btn:disabled { opacity: 0.3; cursor: default; }
+	.stepper-val {
+		min-width: 22px;
+		text-align: center;
+		font-size: var(--text-sm);
+		font-weight: 600;
+		color: var(--text);
+		font-family: 'Outfit', sans-serif;
+		padding: 0 2px;
+	}
+	.stepper-unit {
+		font-size: var(--text-xs);
+		color: var(--text-muted);
+		padding-right: 8px;
+		font-family: 'Outfit', sans-serif;
+	}
+	.line-total {
+		margin-left: auto;
+		font-size: var(--text-sm);
+		font-weight: 600;
+		color: var(--text);
+		font-family: 'Outfit', sans-serif;
+		min-width: 3.5rem;
+		text-align: right;
+	}
+
+	/* Add to Cart button */
+	.add-to-cart-btn {
+		margin-top: var(--space-xs);
+		width: 100%;
+		padding: 0.55em 1em;
+		background: var(--forest);
+		color: #fff;
+		border: none;
+		border-radius: var(--radius-full);
+		font-family: 'Outfit', sans-serif;
+		font-size: var(--text-sm);
+		font-weight: 600;
+		cursor: pointer;
+		transition: background var(--duration) var(--ease), transform var(--duration) var(--ease);
+	}
+	.add-to-cart-btn:hover { background: var(--forest-dark, #2d4a2e); transform: translateY(-1px); }
+	.add-to-cart-btn:active { transform: translateY(0); }
+	.add-to-cart-btn.added { background: var(--copper, #b87333); }
+
 	.empty-state {
 		text-align: center;
 		padding: var(--space-3xl) var(--space-md);
