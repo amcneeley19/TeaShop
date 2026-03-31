@@ -3,38 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SHOP_NAME } from '../data/config';
-
-const drinks = [
-	{ name: 'Birthday', desc: 'vanilla black tea, brown sugar, cream with sprinkles', base: 'Black Tea' },
-	{ name: 'Blackberries and Cream', desc: 'blackberry black tea, brown sugar, cream', base: 'Black Tea' },
-	{ name: 'Black Forest', desc: 'chocolate cherry, cream, brown sugar, chocolate syrup', base: 'Specialty' },
-	{ name: 'Black Tiger', desc: 'chocolate caramel, brown sugar, cream, chocolate and caramel sauce', base: 'Specialty' },
-	{ name: 'Bloody Orange', desc: 'hibiscus orange lemonade or creamsicle', base: 'Hibiscus' },
-	{ name: 'Blue Mango', desc: 'butterfly pea, lemongrass, mango', base: 'Herbal' },
-	{ name: 'Brown Sugar Black', desc: 'black tea sweetened with brown sugar, cream', base: 'Black Tea' },
-	{ name: 'Chai', desc: 'choice of fresh brewed chai tea, brown sugar, cream, cinnamon sugar topping', base: 'Chai' },
-	{ name: 'Chocolate Truffle', desc: 'chocolate black tea, cream, brown sugar, chocolate syrup', base: 'Black Tea' },
-	{ name: 'Coconut Grove', desc: 'coconut oolong tea, coconut cream, coconut sugar and coconut', base: 'Oolong Tea' },
-	{ name: 'Dewey Cherry', desc: 'hibiscus tea and cherry', base: 'Hibiscus' },
-	{ name: 'Dragon Fruit Dream', desc: 'real dragon fruit and strawberry', base: 'Fruit' },
-	{ name: 'Key Lime', desc: 'hibiscus tea with real lime, lemonade', base: 'Hibiscus' },
-	{ name: 'Kona Pineapple', desc: 'lemongrass tea, pineapple, and cream', base: 'Herbal' },
-	{ name: 'Lychee Black', desc: 'black tea infused with lychee, brown sugar, cream', base: 'Black Tea' },
-	{ name: 'Lychee Rose Green', desc: 'green tea with rose petals and lychee', base: 'Green Tea' },
-	{ name: 'Matcha', desc: 'whipped green tea, honey, cream, optional fruit powder', base: 'Green Tea' },
-	{ name: 'Melon Berry Green', desc: 'strawberry melon green tea', base: 'Green Tea' },
-	{ name: 'Peaches and Cream', desc: 'peach black tea, brown sugar cream', base: 'Black Tea' },
-	{ name: 'Pina Colada', desc: 'hibiscus tea, pineapple, and coconut lemonade or cream', base: 'Hibiscus' },
-	{ name: 'Purple Papaya Berry', desc: 'butterfly pea, hibiscus tea, acai berry, strawberry lemonade or cream', base: 'Herbal' },
-	{ name: 'Strawberry Black', desc: 'black tea and strawberries, brown sugar and cream', base: 'Black Tea' },
-	{ name: 'Summer Night', desc: 'citrus spearmint tea, sugar and cream', base: 'Herbal' },
-	{ name: 'Taro', desc: 'taro powder and green tea whipped with cream', base: 'Green Tea' },
-	{ name: 'Thai Tea', desc: 'cardamom and coconut black tea, brown sugar, cream', base: 'Black Tea' },
-	{ name: 'Vanilla', desc: 'vanilla black, brown sugar, cream, extra vanilla extract', base: 'Black Tea' },
-	{ name: 'White Chocolate Mint', desc: 'rooibos tea white chocolate, cream, brown sugar and peppermint pieces', base: 'Herbal' },
-	{ name: 'Wild Strawberry', desc: 'hibiscus strawberry lemonade or cream', base: 'Hibiscus' },
-	{ name: 'Valentine', desc: 'chocolate strawberry tea, chocolate syrup, strawberries, cream', base: 'Specialty' },
-];
+import drinks from '../data/drinks.json';
 
 const baseColors: Record<string, { bg: string; accent: string; text: string }> = {
 	'Black Tea':  { bg: 'rgba(26, 18, 11, 0.07)',   accent: '#6b4226', text: '#3d2e22' },

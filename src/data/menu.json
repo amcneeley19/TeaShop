@@ -5,7 +5,8 @@
     "description": "Smooth, grassy Japanese green tea with a clean, sweet finish.",
     "caffeine": "medium",
     "featured": true,
-    "tags": ["grassy", "smooth", "classic"]
+    "tags": ["grassy", "smooth", "classic"],
+    "pricePerOz": 3.50
   },
   {
     "name": "Jasmine Pearl",
@@ -13,7 +14,8 @@
     "description": "Hand-rolled green tea leaves scented with fresh jasmine blossoms.",
     "caffeine": "medium",
     "featured": true,
-    "tags": ["floral", "aromatic", "hand-rolled"]
+    "tags": ["floral", "aromatic", "hand-rolled"],
+    "pricePerOz": 3.50
   },
   {
     "name": "Matcha Ceremonial Grade",
@@ -21,7 +23,8 @@
     "description": "Stone-ground Japanese green tea powder. Vibrant, creamy, and rich in umami.",
     "caffeine": "high",
     "featured": true,
-    "tags": ["umami", "vibrant", "ceremonial"]
+    "tags": ["umami", "vibrant", "ceremonial"],
+    "pricePerOz": 3.50
   },
   {
     "name": "Darjeeling First Flush",
@@ -29,7 +32,8 @@
     "description": "Light-bodied with muscatel character and floral notes. The Champagne of teas.",
     "caffeine": "high",
     "featured": true,
-    "tags": ["floral", "muscatel", "elegant"]
+    "tags": ["floral", "muscatel", "elegant"],
+    "pricePerOz": 3.50
   },
   {
     "name": "Earl Grey Classic",
@@ -37,7 +41,8 @@
     "description": "Bergamot-scented black tea. A timeless classic for every afternoon.",
     "caffeine": "high",
     "featured": false,
-    "tags": ["bergamot", "classic", "citrusy"]
+    "tags": ["bergamot", "classic", "citrusy"],
+    "pricePerOz": 3.50
   },
   {
     "name": "English Breakfast",
@@ -45,7 +50,8 @@
     "description": "Full-bodied, robust blend. Perfect with milk and sugar.",
     "caffeine": "high",
     "featured": false,
-    "tags": ["robust", "malty", "morning"]
+    "tags": ["robust", "malty", "morning"],
+    "pricePerOz": 3.50
   },
   {
     "name": "Spiced Chai Masala",
@@ -53,7 +59,8 @@
     "description": "Our house chai blend with cardamom, cinnamon, ginger, and clove.",
     "caffeine": "high",
     "featured": false,
-    "tags": ["spicy", "warming", "aromatic"]
+    "tags": ["spicy", "warming", "aromatic"],
+    "pricePerOz": 3.50
   },
   {
     "name": "Lavender Lullaby",
@@ -61,7 +68,8 @@
     "description": "Caffeine-free lavender, chamomile, and lemon balm blend for restful evenings.",
     "caffeine": "none",
     "featured": false,
-    "tags": ["calming", "floral", "bedtime"]
+    "tags": ["calming", "floral", "bedtime"],
+    "pricePerOz": 3.50
   },
   {
     "name": "Peppermint Refresh",
@@ -69,7 +77,8 @@
     "description": "Pure peppermint leaves. Bright, cooling, and naturally caffeine-free.",
     "caffeine": "none",
     "featured": false,
-    "tags": ["minty", "cooling", "digestive"]
+    "tags": ["minty", "cooling", "digestive"],
+    "pricePerOz": 3.50
   },
   {
     "name": "Silver Needle",
@@ -77,7 +86,8 @@
     "description": "Pure Fujian white tea buds. Delicate, sweet, and subtly honeyed.",
     "caffeine": "low",
     "featured": false,
-    "tags": ["delicate", "sweet", "pure"]
+    "tags": ["delicate", "sweet", "pure"],
+    "pricePerOz": 3.50
   },
   {
     "name": "Iron Goddess Oolong",
@@ -85,7 +95,8 @@
     "description": "Traditional Tie Guan Yin with orchid-like aroma and creamy finish.",
     "caffeine": "medium",
     "featured": false,
-    "tags": ["orchid", "creamy", "traditional"]
+    "tags": ["orchid", "creamy", "traditional"],
+    "pricePerOz": 3.50
   },
   {
     "name": "Rooibos Vanilla",
@@ -93,7 +104,8 @@
     "description": "South African rooibos with natural vanilla. Caffeine-free and naturally sweet.",
     "caffeine": "none",
     "featured": false,
-    "tags": ["vanilla", "sweet", "caffeine-free"]
+    "tags": ["vanilla", "sweet", "caffeine-free"],
+    "pricePerOz": 3.50
   },
   {
     "name": "Dragon Well (Longjing)",
@@ -101,7 +113,8 @@
     "description": "Pan-fired Chinese green tea with chestnut notes and a flat, elegant leaf.",
     "caffeine": "medium",
     "featured": false,
-    "tags": ["nutty", "elegant", "pan-fired"]
+    "tags": ["nutty", "elegant", "pan-fired"],
+    "pricePerOz": 3.50
   },
   {
     "name": "Genmaicha",
@@ -109,7 +122,8 @@
     "description": "Japanese green tea blended with toasted brown rice. Warm and nutty.",
     "caffeine": "medium",
     "featured": false,
-    "tags": ["toasty", "nutty", "comforting"]
+    "tags": ["toasty", "nutty", "comforting"],
+    "pricePerOz": 3.50
   },
   {
     "name": "Lapsang Souchong",
@@ -117,7 +131,8 @@
     "description": "Pine-smoked black tea from Fujian. Bold, smoky, and unforgettable.",
     "caffeine": "high",
     "featured": false,
-    "tags": ["smoky", "bold", "pine"]
+    "tags": ["smoky", "bold", "pine"],
+    "pricePerOz": 3.50
   },
   {
     "name": "Hibiscus Berry",
@@ -125,6 +140,7 @@
     "description": "Tart hibiscus with elderberry, rosehips, and blackcurrant. Ruby-red and refreshing.",
     "caffeine": "none",
     "featured": false,
-    "tags": ["tart", "fruity", "vibrant"]
+    "tags": ["tart", "fruity", "vibrant"],
+    "pricePerOz": 3.50
   }
 ]
