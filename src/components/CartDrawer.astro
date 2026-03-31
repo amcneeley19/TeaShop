@@ -1,0 +1,363 @@
+---
+// Cart Drawer — slide-in panel from the right
+---
+
+<!-- Overlay -->
+<div class="cart-overlay" id="cart-overlay" aria-hidden="true"></div>
+
+<!-- Drawer -->
+<div
+  class="cart-drawer"
+  id="cart-drawer"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Shopping cart"
+  aria-hidden="true"
+>
+  <div class="drawer-header">
+    <h2 class="drawer-title">Your Cart <span class="drawer-count" id="drawer-count"></span></h2>
+    <button class="drawer-close" id="drawer-close" aria-label="Close cart">&#x00D7;</button>
+  </div>
+
+  <div class="drawer-items" id="drawer-items">
+    <!-- Rendered by JS -->
+  </div>
+
+  <div class="drawer-empty" id="drawer-empty" hidden>
+    <p>Your cart is empty.</p>
+    <a href="/tea-list" class="empty-link">Browse our teas</a>
+  </div>
+
+  <div class="drawer-footer" id="drawer-footer" hidden>
+    <div class="drawer-subtotal">
+      Subtotal: <strong id="drawer-subtotal">$0.00</strong>
+    </div>
+    <a href="/checkout" class="checkout-btn">Checkout</a>
+  </div>
+</div>
+
+<script>
+  import { cart } from '../lib/cart-browser';
+
+  const overlay = document.getElementById('cart-overlay')!;
+  const drawer = document.getElementById('cart-drawer')!;
+  const closeBtn = document.getElementById('drawer-close')!;
+  const itemsEl = document.getElementById('drawer-items')!;
+  const emptyEl = document.getElementById('drawer-empty')!;
+  const footerEl = document.getElementById('drawer-footer')!;
+  const subtotalEl = document.getElementById('drawer-subtotal')!;
+  const countEl = document.getElementById('drawer-count')!;
+
+  let isOpen = false;
+
+  function openDrawer() {
+    isOpen = true;
+    drawer.setAttribute('aria-hidden', 'false');
+    overlay.setAttribute('aria-hidden', 'false');
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    document.body.classList.add('scroll-lock');
+    renderItems();
+  }
+
+  function closeDrawer() {
+    isOpen = false;
+    drawer.setAttribute('aria-hidden', 'true');
+    overlay.setAttribute('aria-hidden', 'true');
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.classList.remove('scroll-lock');
+  }
+
+  function formatOptionsSummary(options: { boba: string; milk: string; sweetness: string; whip: boolean }): string {
+    const parts: string[] = [];
+    if (options.boba !== 'none') parts.push(options.boba + ' boba');
+    parts.push(options.milk === 'nondairy' ? 'non-dairy' : 'dairy');
+    parts.push(options.sweetness + ' sweet');
+    if (options.whip) parts.push('whip');
+    return parts.join(', ');
+  }
+
+  function renderItems() {
+    const items = cart.getCart();
+    itemsEl.innerHTML = '';
+
+    if (items.length === 0) {
+      emptyEl.hidden = false;
+      footerEl.hidden = true;
+      countEl.textContent = '';
+      return;
+    }
+
+    emptyEl.hidden = true;
+    footerEl.hidden = false;
+    countEl.textContent = `(${cart.getItemCount()})`;
+    subtotalEl.textContent = `$${cart.getSubtotal().toFixed(2)}`;
+
+    for (const item of items) {
+      const row = document.createElement('div');
+      row.className = 'cart-item';
+
+      let descHtml = '';
+
+      if (item.type === 'tea') {
+        const total = (item.ounces * item.pricePerOz).toFixed(2);
+        descHtml = `<span class="item-desc">${item.name} &mdash; ${item.ounces} oz &times; $${item.pricePerOz.toFixed(2)}/oz = $${total}</span>`;
+      } else if (item.type === 'drink') {
+        const summary = formatOptionsSummary(item.options);
+        descHtml = `<span class="item-desc">${item.name} (${item.size}) &mdash; ${summary}</span><span class="item-qty">Qty: ${item.qty}</span>`;
+      } else if (item.type === 'product') {
+        const total = (item.qty * item.price).toFixed(2);
+        descHtml = `<span class="item-desc">${item.name} &times; ${item.qty} &mdash; $${total}</span>`;
+      }
+
+      row.innerHTML = `
+        <div class="item-info">${descHtml}</div>
+        <button class="item-remove" data-id="${item.id}" aria-label="Remove ${item.name} from cart">&times;</button>
+      `;
+
+      itemsEl.appendChild(row);
+    }
+
+    itemsEl.querySelectorAll<HTMLButtonElement>('.item-remove').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.id;
+        if (id) cart.removeItem(id);
+      });
+    });
+  }
+
+  // Toggle on custom event
+  window.addEventListener('toggle-cart', () => {
+    if (isOpen) {
+      closeDrawer();
+    } else {
+      openDrawer();
+    }
+  });
+
+  // Re-render on cart update
+  window.addEventListener('cart-updated', () => {
+    if (isOpen) renderItems();
+    // Always update the count badge via CartButton script; drawer only re-renders when open
+  });
+
+  // Close button
+  closeBtn.addEventListener('click', closeDrawer);
+
+  // Overlay click
+  overlay.addEventListener('click', closeDrawer);
+
+  // Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen) closeDrawer();
+  });
+</script>
+
+<style>
+  .cart-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(26, 18, 11, 0.45);
+    z-index: 200;
+    opacity: 0;
+    transition: opacity 0.3s var(--ease);
+  }
+
+  .cart-overlay.open {
+    display: block;
+    opacity: 1;
+  }
+
+  .cart-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 380px;
+    max-width: 100vw;
+    height: 100dvh;
+    background: var(--parchment);
+    z-index: 201;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -4px 0 32px rgba(26, 18, 11, 0.18);
+    transform: translateX(100%);
+    transition: transform 0.32s var(--ease);
+  }
+
+  .cart-drawer.open {
+    transform: translateX(0);
+  }
+
+  /* ── Header ── */
+  .drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-lg);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .drawer-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: var(--text-xl);
+    font-weight: 600;
+    color: var(--espresso);
+    margin: 0;
+  }
+
+  .drawer-count {
+    font-size: var(--text-sm);
+    font-weight: 400;
+    color: var(--espresso-mid);
+  }
+
+  .drawer-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: var(--espresso-mid);
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    transition: color var(--duration) var(--ease), background var(--duration) var(--ease);
+  }
+
+  .drawer-close:hover {
+    color: var(--copper);
+    background: var(--copper-light);
+  }
+
+  /* ── Items ── */
+  .drawer-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-md) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .cart-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    padding: var(--space-sm) 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cart-item:last-child {
+    border-bottom: none;
+  }
+
+  .item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+  }
+
+  .item-desc {
+    font-size: var(--text-sm);
+    color: var(--espresso);
+    line-height: 1.4;
+  }
+
+  .item-qty {
+    font-size: var(--text-xs, 0.75rem);
+    color: var(--espresso-mid);
+  }
+
+  .item-remove {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    line-height: 1;
+    color: var(--espresso-mid);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    transition: color var(--duration) var(--ease), background var(--duration) var(--ease);
+    flex-shrink: 0;
+  }
+
+  .item-remove:hover {
+    color: var(--copper);
+    background: var(--copper-light);
+  }
+
+  /* ── Empty state ── */
+  .drawer-empty {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    color: var(--espresso-mid);
+    padding: var(--space-xl);
+    text-align: center;
+  }
+
+  .empty-link {
+    color: var(--copper);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .empty-link:hover {
+    color: var(--forest, #3b5e40);
+  }
+
+  /* ── Footer ── */
+  .drawer-footer {
+    padding: var(--space-lg);
+    border-top: 1px solid var(--border);
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .drawer-subtotal {
+    font-size: var(--text-base);
+    color: var(--espresso);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .checkout-btn {
+    display: block;
+    text-align: center;
+    background: var(--copper);
+    color: white;
+    padding: 0.75rem var(--space-lg);
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: var(--text-sm);
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: background var(--duration) var(--ease), transform var(--duration) var(--ease);
+  }
+
+  .checkout-btn:hover {
+    background: var(--espresso);
+    transform: translateY(-1px);
+  }
+
+  /* ── Scroll lock ── */
+  :global(body.scroll-lock) {
+    overflow: hidden;
+  }
+
+  @media (max-width: 480px) {
+    .cart-drawer {
+      width: 100vw;
+    }
+  }
+</style>

@@ -11,6 +11,29 @@
 	<span class="cart-badge" id="cart-badge">0</span>
 </button>
 
+<script>
+  import { cart } from '../lib/cart-browser';
+
+  const btn = document.getElementById('cart-btn') as HTMLButtonElement | null;
+  const badge = document.getElementById('cart-badge') as HTMLElement | null;
+
+  function updateBadge() {
+    if (!badge) return;
+    const count = cart.getItemCount();
+    badge.textContent = String(count);
+    badge.classList.toggle('has-items', count > 0);
+  }
+
+  btn?.addEventListener('click', () => {
+    window.dispatchEvent(new CustomEvent('toggle-cart'));
+  });
+
+  window.addEventListener('cart-updated', updateBadge);
+
+  // Initialise badge on load
+  updateBadge();
+</script>
+
 <style>
 	.cart-btn {
 		position: relative;

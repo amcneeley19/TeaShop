@@ -2,6 +2,7 @@
 import { SHOP_NAME_SHORT } from '../data/config';
 import HeaderLink from './HeaderLink.astro';
 import CartButton from './CartButton.astro';
+import CartDrawer from './CartDrawer.astro';
 ---
 
 <header>
@@ -28,6 +29,7 @@ import CartButton from './CartButton.astro';
 		</div>
 	</div>
 </header>
+<CartDrawer />
 
 <script>
 	const toggle = document.querySelector('.menu-toggle') as HTMLButtonElement;
