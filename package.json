@@ -23,6 +23,9 @@
   "engines": {
     "node": ">=22.12.0"
   },
+  "overrides": {
+    "axios": "1.14.0"
+  },
   "devDependencies": {
     "vitest": "^4.1.2"
   }
